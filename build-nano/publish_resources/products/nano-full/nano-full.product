@@ -17,5 +17,12 @@
 	  <feature id="org.eclipse.gemini.web" version="0.0.0"/>
 	  <feature id="org.eclipse.virgo.extensions" version="0.0.0"/>
    </features>
+   
+   <configurations>
+	  <property name="org.eclipse.gemini.web.tomcat.config.path" value="configuration/default-server.xml"/>
+	  <property name="javaee.api.bundles" value="org.glassfish.javax.ejb;bundle-version\=3.1.1"/>
+	  <property name="javaee.impl.bundles" value="org.apache.openejb.core;bundle-version\=4.0.0.beta-2,org.apache.geronimo.bundles.bval-jsr303;bundle-version\=0.3.0.incubating,testServletInitializer;bundle-version\=1.0.0.qualifier"/>
+	  <property name="javax.ejb.Factory" value="virgo.objectfactory.EjbFactory"/>
+   </configurations>
 
 </product>
