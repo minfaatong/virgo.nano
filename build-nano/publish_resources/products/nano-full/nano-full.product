@@ -20,9 +20,8 @@
    
    <configurations>
 	  <property name="org.eclipse.gemini.web.tomcat.config.path" value="configuration/default-server.xml"/>
-	  <property name="javaee.api.bundles" value="org.glassfish.javax.ejb;bundle-version=3.1.1"/>
-	  <property name="javaee.impl.bundles" value="org.apache.openejb.core;bundle-version=4.0.0.beta-2,org.apache.geronimo.bundles.bval-jsr303;bundle-version=0.3.0.incubating,testServletInitializer;bundle-version=1.0.0.qualifier"/>
-	  <property name="javax.ejb.Factory" value="virgo.objectfactory.EjbFactory"/>
+	  <property name="javaee.api.bundles" value="org.glassfish.javax.ejb;bundle-version=3.1.1,javax.persistence;bundle-version=2.0.3.v201010191057"/>
+	  <property name="javaee.impl.bundles" value="org.apache.openejb.core;bundle-version=4.0.0.beta-2,org.apache.geronimo.bundles.bval-jsr303;bundle-version=0.3.0.incubating,org.eclipse.virgo.javaee.web.applistener;bundle-version=1.0.0.qualifier,org.apache.derby;bundle-version=10.5.1.1,org.eclipse.persistence.jpa;bundle-version=2.3.2.v20111125-r10461"/>
    </configurations>
 
 </product>

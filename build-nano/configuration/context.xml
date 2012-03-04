@@ -1,0 +1,5 @@
+<Context>
+    <Listener className="org.eclipse.virgo.javaee.web.tomcat.support.NamingResourceListener" />
+    <Resource name="UserTransaction" auth="Container" type="javax.transaction.UserTransaction" /> 
+    <Transaction factory="org.objectweb.jotm.UserTransactionFactory" jotm.timeout="60" />
+</Context>

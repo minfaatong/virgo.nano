@@ -150,5 +150,8 @@
   IdleTimeout = 0 minutes
 
 </Container>
+    
+<TransactionManager id="jotm" provider="javax.transaction#jotm">
+</TransactionManager>
 
 </openejb>
