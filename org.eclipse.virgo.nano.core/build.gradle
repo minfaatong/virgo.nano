@@ -1,0 +1,87 @@
+apply plugin: 'osgi'
+
+jar {
+    manifest {
+        version = project.version
+        name = 'Virgo Nano Core'
+        instruction 'Import-Package', '*'
+        instruction 'Export-Package', '*'
+        attributes( 'Bundle-SymbolicName': 'org.eclipse.virgo.nano.core')
+        attributes( 'Built-By': "Gradle ${gradle.gradleVersion}" )
+    }
+}
+
+/*
+Service-Component: OSGI-INF/org.eclipse.virgo.nano.config.xml,OSGI-INF/org.eclipse.virgo.nano.core.xml,OSGI-INF/org.eclipse.virgo.nano.server.readiness.tracker.xml
+Import-Template: 
+ org.eclipse.virgo.util.*;version="${org.eclipse.virgo.util:[=.=.=, =.+1)}",
+ org.eclipse.virgo.medic.*;version="${org.eclipse.virgo.medic:[=.=.=, =.+1)}",
+ org.slf4j.*;version="${org.slf4j.api:[=.=.=, +1)}",
+ org.aspectj.*;version="${org.aspectj:[=.=.=.=, +1)}",
+ javax.management.*;version="0",
+ javax.xml.parsers;version="0",
+ org.osgi.*;version="0",
+ org.eclipse.osgi.*;version="0",
+ org.eclipse.equinox.region.*;version="${org.eclipse.equinox.region:[=.=.=, =.+1)}",
+ org.w3c.dom;version="0",
+ org.xml.sax;version="0"
+Excluded-Exports: 
+ *.internal.*
+*/
+
+configurations {
+    tools
+    aspects
+    ajInpath
+}
+
+def aspectjVersion = "1.8.1"
+
+dependencies {
+    tools "org.aspectj:aspectjtools:$aspectjVersion"
+    compile "org.aspectj:aspectjrt:$aspectjVersion"
+    compile("cglib:cglib:2.2.2") { exclude group: 'asm' } // cglib 2.2.2 depends on asm 3.3
+    compile 'org.ow2.asm:asm:5.0.3'
+    compile 'org.ow2.asm:asm-tree:5.0.3'
+}
+
+compileJava.deleteAllActions()
+
+task aspectJ(dependsOn: JavaPlugin.PROCESS_RESOURCES_TASK_NAME) {
+    dependsOn configurations.tools.getTaskDependencyFromProjectDependency(true, "compileJava")
+    def srcDirs = sourceSets.main.java.srcDirs
+    srcDirs.each { inputs.dir it }
+    def destDir = sourceSets.main.output.classesDir
+    outputs.dir destDir
+    doLast {
+        ant.taskdef(
+            resource: "org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties",
+            classpath: configurations.tools.asPath
+        )
+// TODO - translate the "old" command
+//		<iajc inPath="${test.output.dir}" aspectPathRef="test.aspect.path" classpathRef="test.compile.classpath"
+//				destDir="${test.output.dir}" source="${source.version}" checkRuntimeVersion="false" X="${aspectj.x}"/>
+        ant.iajc(
+            source:sourceCompatibility,
+            target:targetCompatibility,
+            destDir: destDir.absolutePath,
+            maxmem:"512m",
+            fork:"true",
+            verbose: "true",
+            showWeaveInfo: "true",
+			aspectPath: configurations.aspects.asPath,
+			inpath:configurations.ajInpath.asPath,
+			sourceRootCopyFilter:"**/.svn/*,**/*.java",
+			classpath:configurations.compile.asPath
+        )
+        {
+            sourceroots {
+                srcDirs.each {
+                    if (it.exists()) pathelement location: it.absolutePath
+                }
+            }
+        }
+    }
+}
+
+compileJava.dependsOn aspectJ

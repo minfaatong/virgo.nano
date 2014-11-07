@@ -43,7 +43,7 @@ public class ResolutionStateDumperTests {
         
         ResolutionStateDumper dumper = new ResolutionStateDumper(new StubSystemStateAccessor(state), writer);
         
-        File outputFile = new File("./target/dump.zip");
+        File outputFile = new File("./build/dump.zip");
         if (outputFile.exists()) {
             assertTrue(outputFile.delete());
         }                

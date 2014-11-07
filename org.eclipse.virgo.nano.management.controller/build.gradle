@@ -1,0 +1,20 @@
+apply plugin: 'osgi'
+
+jar {
+    manifest {
+        version = project.version
+        name = 'Virgo Nano MBean Exporter'
+        instruction 'Import-Package', '*'
+        instruction 'Export-Package', '*'
+        attributes( 'Bundle-SymbolicName': 'org.eclipse.virgo.nano.management.controller')
+        attributes( 'Built-By': "Gradle ${gradle.gradleVersion}" )
+    }
+}
+
+/*
+Service-Component: OSGI-INF/org.eclipse.virgo.nano.management.controller.xml
+Import-Template: org.eclipse.virgo.nano.*;version="${version:[=.=.=, +1)}",
+ org.osgi.framework.*;version="0"
+Excluded-Exports: 
+ *
+*/

@@ -1,0 +1,17 @@
+apply plugin: 'osgi'
+
+jar {
+    manifest {
+        version = project.version
+        name = 'Virgo Kernel Authentication'
+        instruction 'Import-Package', '*'
+        instruction 'Export-Package', '*'
+        attributes( 'Bundle-SymbolicName': 'org.eclipse.virgo.nano.authentication')
+        attributes( 'Built-By': "Gradle ${gradle.gradleVersion}" )
+    }
+}
+
+/*
+Import-Template: javax.security.*;version="0"
+Excluded-Exports: *.internal.*
+*/
