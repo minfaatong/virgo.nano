@@ -74,7 +74,7 @@ public final class StandardScopeFactory implements ScopeFactory {
     /**
      * {@inheritDoc}
      */
-    public Scope getServiceScope(ServiceReference ref) {
+    public Scope getServiceScope(ServiceReference<Scope> ref) {
         return Scope.SCOPE_ID_APP.equals(getScopeIdentifier(ref)) ? getBundleScope(ref.getBundle()) : getGlobalScope();
     }
 
@@ -95,7 +95,7 @@ public final class StandardScopeFactory implements ScopeFactory {
         }
     }
 
-    private String getScopeIdentifier(ServiceReference ref) {
+    private String getScopeIdentifier(ServiceReference<Scope> ref) {
         String serviceScope = (String) ref.getProperty(Scope.PROPERTY_SERVICE_SCOPE);
         if (serviceScope == null) {
             /*

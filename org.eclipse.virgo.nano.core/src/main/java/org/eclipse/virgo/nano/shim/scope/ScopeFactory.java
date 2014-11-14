@@ -44,7 +44,7 @@ public interface ScopeFactory {
      * @param ref service reference
      * @return the scope
      */
-    Scope getServiceScope(ServiceReference ref);
+    Scope getServiceScope(ServiceReference<Scope> ref);
 
     /**
      * Get the {@link Scope} for the given application scope name.

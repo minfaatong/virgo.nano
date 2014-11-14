@@ -38,7 +38,7 @@ public class ResolutionDumpContributor implements DumpContributor {
     private final ResolutionStateDumper resolutionStateDumper;
 
     public ResolutionDumpContributor(BundleContext bundleContext) {
-        PlatformAdmin platformAdmin = bundleContext.getService(bundleContext.getServiceReference(PlatformAdmin.class));
+        PlatformAdmin platformAdmin = (PlatformAdmin) bundleContext.getService(bundleContext.getServiceReference(PlatformAdmin.class));
             //OsgiFrameworkUtils.getService(bundleContext, PlatformAdmin.class).getService();
         this.resolutionStateDumper = new ResolutionStateDumper(new StandardSystemStateAccessor(platformAdmin), new StandardStateWriter(platformAdmin.getFactory()));
     }
