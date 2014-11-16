@@ -32,9 +32,5 @@ Excluded-Exports:
 apply plugin: 'aspectj'
 
 compileAspect {
-//	xlint = 'warning'
-//    maxmem = '1024m'
-//	additionalAjcArgs = ['checkRuntimeVersion' : 'false'
-	//, 'X' : 'noInline', 'preserveAllLocals' : ''
-//	]
+     additionalAjcArgs = ['source' : '1.8', 'debug' : '', 'X' : 'noInline', 'preserveAllLocals' : '']
 }
