@@ -28,9 +28,3 @@ Import-Template:
 Excluded-Exports: 
  *.internal.*
 */
-
-apply plugin: 'aspectj'
-
-compileAspect {
-     additionalAjcArgs = ['source' : '1.8', 'debug' : '', 'X' : 'noInline', 'preserveAllLocals' : '']
-}
