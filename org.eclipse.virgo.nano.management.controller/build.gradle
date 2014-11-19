@@ -8,11 +8,11 @@ jar {
         instruction 'Export-Package', '*'
         attributes( 'Bundle-SymbolicName': 'org.eclipse.virgo.nano.management.controller')
         attributes( 'Built-By': "Gradle ${gradle.gradleVersion}" )
+        attributes( 'Service-Component': "OSGI-INF/org.eclipse.virgo.nano.management.controller.xml" )
     }
 }
 
 /*
-Service-Component: OSGI-INF/org.eclipse.virgo.nano.management.controller.xml
 Import-Template: org.eclipse.virgo.nano.*;version="${version:[=.=.=, +1)}",
  org.osgi.framework.*;version="0"
 Excluded-Exports: 
