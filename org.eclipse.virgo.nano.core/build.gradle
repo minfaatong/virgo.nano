@@ -12,19 +12,17 @@ jar {
     }
 }
 
-/*
-Import-Template: 
- org.eclipse.virgo.util.*;version="${org.eclipse.virgo.util:[=.=.=, =.+1)}",
- org.eclipse.virgo.medic.*;version="${org.eclipse.virgo.medic:[=.=.=, =.+1)}",
- org.slf4j.*;version="${org.slf4j.api:[=.=.=, +1)}",
- org.aspectj.*;version="${org.aspectj:[=.=.=.=, +1)}",
- javax.management.*;version="0",
- javax.xml.parsers;version="0",
- org.osgi.*;version="0",
- org.eclipse.osgi.*;version="0",
- org.eclipse.equinox.region.*;version="${org.eclipse.equinox.region:[=.=.=, =.+1)}",
- org.w3c.dom;version="0",
- org.xml.sax;version="0"
-Excluded-Exports: 
- *.internal.*
-*/
+apply plugin: "findbugs"
+
+    findbugs {
+//        toolVersion = "2.0.1"
+//        sourceSets = [sourceSets.main]
+//        ignoreFailures = true
+//        reportsDir = file("$project.buildDir/findbugsReports")
+//        effort = "max"
+//        reportLevel = "high"
+//        visitors = ["FindSqlInjection", "SwitchFallthrough"]
+//        omitVisitors = ["FindNonShortCircuit"]
+//        includeFilter = file("$rootProject.projectDir/config/findbugs/includeFilter.xml")
+//        excludeFilter = file("$rootProject.projectDir/findbugs-exclude.xml")
+    }
