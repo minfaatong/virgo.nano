@@ -14,8 +14,7 @@ package test;
 import org.eclipse.virgo.nano.serviceability.NonNull;
 
 
-/**
- */
+// TODO - move back to test source folder when we know how to weave test classes
 public class AssertingService {
     
     public AssertingService() {
