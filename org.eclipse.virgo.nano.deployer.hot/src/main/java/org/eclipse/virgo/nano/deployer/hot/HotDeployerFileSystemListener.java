@@ -170,7 +170,7 @@ final class HotDeploymentFileSystemListener implements FileSystemListener {
     private void undeploy(String sourceArtefact) throws DeploymentException {
         DeploymentIdentity deploymentIdentity = getDeploymentIdentity(sourceArtefact);
         if (deploymentIdentity != null) {
-            this.deployer.undeploy(deploymentIdentity);
+            this.deployer.undeploy(deploymentIdentity, true);
         }
     }
 
